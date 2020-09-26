@@ -7,7 +7,7 @@ output: html_document
 
 ## Loading Packages
 
-The following code loads the tidyverse and gtrendsR packages, as well as creating a connection to the "functions" script and loading the contained functions.
+The following code loads our packages and connects to the R script which contains our three functions.
 
 ```{r packages}
 
@@ -33,7 +33,7 @@ data = gtrends(keyword = "supreme court", geo = "US", time = "today 1-m")$intere
 
 ## Using functions
 
-Now we just apply the functions that were created in the "functions" script to run a very simple changepoint analysis.
+Now we just apply the functions that were created in the "functions" script to run a very simple change point analysis. It looks like there is a significant change in searches for "supreme court" following the death of Supreme Court Justice Ruth Bader Ginsburg.
 
 ```{r functions}
 
