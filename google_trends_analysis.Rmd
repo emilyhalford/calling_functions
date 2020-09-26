@@ -1,0 +1,47 @@
+---
+title: "Google Trends Analysis"
+author: "Emily Halford"
+date: "9/26/2020"
+output: html_document
+---
+
+## Loading Packages
+
+The following code loads the tidyverse and gtrendsR packages, as well as creating a connection to the "functions" script and loading the contained functions.
+
+```{r packages}
+
+library(tidyverse)
+library(gtrendsR)
+library(bcp)
+source("./functions.R")
+
+```
+
+## Pulling in data
+
+The following code pulls some Google Trends data for "Supreme Court" searches. We will use this dataset with our functions below.
+
+```{r data_pull}
+
+data = gtrends(keyword = "supreme court", geo = "US", time = "today 1-m")$interest_over_time %>% 
+  mutate(
+    date = as.Date(date)
+  )
+
+```
+
+## Using functions
+
+Now we just apply the functions that were created in the "functions" script to run a very simple changepoint analysis.
+
+```{r functions}
+
+google_graph(data, data$date, data$hits, 'Google Searches for "Supreme Court"')
+
+bcp_dataframe = bcp_analysis(data$hits, data)
+
+bcp_plot(bcp_dataframe)
+
+```
+
